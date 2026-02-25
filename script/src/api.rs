@@ -430,6 +430,7 @@ fn run_proof_generation(
     stdin.write(&proof_inputs);
 
     // Generate proof.
+    crate::normalize_sp1_prover_env();
     let client = ProverClient::from_env();
     let pk = client.setup(LC_ELF).map_err(|e| format!("setup failed: {e}"))?;
 

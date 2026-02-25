@@ -152,6 +152,7 @@ fn test_beacon_zkvm(network: &str) -> Result<(), String> {
     let mut stdin = SP1Stdin::new();
     stdin.write(&inputs);
 
+    eth_lc_script::normalize_sp1_prover_env();
     let client = ProverClient::from_env();
     let (output, report) = client.execute(LC_ELF, stdin)
         .run()

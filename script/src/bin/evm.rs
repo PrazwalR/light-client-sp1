@@ -162,6 +162,7 @@ fn fetch_live_inputs(args: &EVMArgs) -> ProofInputs {
 fn main() {
     sp1_sdk::utils::setup_logger();
     dotenv::dotenv().ok();
+    eth_lc_script::normalize_sp1_prover_env();
 
     let args = EVMArgs::parse();
 

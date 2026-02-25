@@ -88,6 +88,7 @@ fn main() {
     // Setup logging and environment.
     sp1_sdk::utils::setup_logger();
     dotenv::dotenv().ok();
+    eth_lc_script::normalize_sp1_prover_env();
 
     let args = Args::parse();
 
@@ -195,7 +196,7 @@ fn main() {
                     .unwrap_or(false);
                 if is_mock {
                     println!("[!] Proof verification skipped (SP1_PROVER=mock generates stub proofs)");
-                    println!("    Use SP1_PROVER=local or SP1_PROVER=network for real verification.");
+                    println!("    Use SP1_PROVER=cpu or SP1_PROVER=network for real verification.");
                 } else {
                     panic!("proof verification failed: {e}");
                 }
