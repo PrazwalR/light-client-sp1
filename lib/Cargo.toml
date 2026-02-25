@@ -1,7 +1,19 @@
 [package]
-name = "fibonacci-lib"
+name = "eth-lc-lib"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = []
+bls = ["bls12_381", "group"]
+
 [dependencies]
 alloy-sol-types = { workspace = true }
+serde = { workspace = true }
+sha2 = { workspace = true }
+tiny-keccak = { version = "2.0", features = ["keccak"] }
+bls12_381 = { version = "0.8", default-features = false, features = ["groups", "pairings", "alloc", "experimental"], optional = true }
+group = { version = "0.13", default-features = false, optional = true }
+
+[dev-dependencies]
+hex = "0.4"

@@ -1,11 +1,11 @@
 [package]
 version = "0.1.0"
-name = "fibonacci-script"
+name = "eth-lc-script"
 edition = "2021"
-default-run = "fibonacci"
+default-run = "light-client"
 
 [[bin]]
-name = "fibonacci"
+name = "light-client"
 path = "src/bin/main.rs"
 
 [[bin]]
@@ -16,16 +16,34 @@ path = "src/bin/evm.rs"
 name = "vkey"
 path = "src/bin/vkey.rs"
 
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
+
+[[bin]]
+name = "sync"
+path = "src/bin/sync_cli.rs"
+
+[[bin]]
+name = "integration-test"
+path = "src/bin/integration_test.rs"
+
 [dependencies]
 sp1-sdk = { version = "6.0.0-beta.1", features = ["blocking", "native-gnark"] }
 serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
-serde = { version = "1.0.200", default-features = false, features = ["derive"] }
+serde = { workspace = true }
 clap = { version = "4.0", features = ["derive", "env"] }
 tracing = "0.1.40"
 hex = "0.4.3"
 alloy-sol-types = { workspace = true }
-fibonacci-lib = { path = "../lib" }
+eth-lc-lib = { path = "../lib", features = ["bls"] }
 dotenv = "0.15.0"
+reqwest = { version = "0.12", features = ["blocking", "json"] }
+sha2 = { workspace = true }
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors"] }
+uuid = { version = "1", features = ["v4"] }
 
 [build-dependencies]
 sp1-build = { version = "6.0.0-beta.1" }
